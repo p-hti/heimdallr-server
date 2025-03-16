@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/p-hti/heimdallar-server/internal/domain/model"
-	"github.com/p-hti/heimdallar-server/internal/http-server/middleware/logger"
+	"github.com/p-hti/heimdallr-server/internal/domain/model"
+	"github.com/p-hti/heimdallr-server/internal/http-server/middleware/logger"
 )
 
 type HTTPServer struct {

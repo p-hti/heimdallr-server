@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/p-hti/heimdallar-server/internal/domain/model"
+	"github.com/p-hti/heimdallr-server/internal/domain/model"
 )
 
 const userContextKey model.ContextKey = "UserID"

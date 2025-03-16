@@ -1,0 +1,35 @@
+services:
+  timescaledb:
+    container_name: timescale
+    image: timescale/timescaledb:latest-pg12
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: timescaledb
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sso
+    networks:
+      - db
+
+  pgadmin:
+    container_name: pga
+    image: dpage/pgadmin4:8.1
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "models@mail.ru"
+      PGADMIN_DEFAULT_PASSWORD: "12345678"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge

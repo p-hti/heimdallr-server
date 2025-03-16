@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/p-hti/heimdallar-server/internal/domain/model"
+	"github.com/p-hti/heimdallr-server/internal/domain/model"
 )
 
 type Service struct {

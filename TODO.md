@@ -7,6 +7,7 @@
 - [ ] CRUD for resources
 - [ ] Add limit values for identification threats
 - [ ] Send commands for clients (kill any process or smth like that)
+- [ ] Client simulator implementation
 
 ## Optionality task:
 - [ ] Add cache realization
