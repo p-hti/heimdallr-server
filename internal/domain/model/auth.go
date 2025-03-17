@@ -3,12 +3,19 @@ package model
 import "time"
 
 type User struct {
-	ID       int64
-	Email    string
-	PassHash []byte
+	ID       int64  `db:"id"`
+	Email    string `db:"email"`
+	Name     string `db:"name"`
+	PassHash []byte `db:"pass_hash"`
 }
 
-type LoginStruct struct {
+type SignInStruct struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type SingUpStruct struct {
+	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }

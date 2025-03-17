@@ -1,9 +1,10 @@
 package credential
 
 import (
+	"fmt"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 )
 
 type Claims struct {
@@ -35,4 +36,26 @@ func GenerateRefreshToken(uid int64, jwtKey []byte) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(jwtKey)
+}
+
+func ValidateToken(jwtToken []byte, tokenString string) (*jwt.StandardClaims, error) {
+	claims := &jwt.StandardClaims{}
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtToken, nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// Проверяем валидность токена
+	if !token.Valid {
+		return nil, fmt.Errorf("invalid token")
+	}
+
+	// Проверяем срок действия токена
+	if time.Now().Unix() > claims.ExpiresAt {
+		return nil, fmt.Errorf("token expired")
+	}
+
+	return claims, nil
 }
