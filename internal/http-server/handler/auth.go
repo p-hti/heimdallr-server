@@ -11,11 +11,9 @@ import (
 )
 
 type AuthService interface {
-	SaveUser(
+	SignUp(
 		ctx context.Context,
-		email string,
-		name string,
-		passHash string,
+		inputStruct model.SingUpStruct,
 	) (
 		err error,
 	)
@@ -64,7 +62,7 @@ func (h *HTTPServer) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := h.Service.SaveUser(r.Context(), signUp.Email, signUp.Name, signUp.Password)
+	err := h.Service.SignUp(r.Context(), signUp)
 	if err != nil {
 		http.Error(w, "failed to create user", http.StatusInternalServerError)
 		return
