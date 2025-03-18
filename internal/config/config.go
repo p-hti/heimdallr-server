@@ -12,6 +12,16 @@ const configPath = "config/config.yaml"
 
 type Config struct {
 	HTTPServer `yaml:"http_server"`
+	Postgres   `yaml:"postgres"`
+}
+
+type Postgres struct {
+	DBName  string `yaml:"db_name"`
+	DBUser  string `yaml:"db_yser"`
+	DBPass  string `yaml:"db_pass"`
+	DBHost  string `yaml:"db_host"`
+	DBPort  string `yaml:"db_port"`
+	SSLMode string `yaml:"db_ssl_mode"`
 }
 
 type HTTPServer struct {

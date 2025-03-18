@@ -4,8 +4,13 @@ http_server:
   idle_timeout: 30s
   
 
-
-database:
+postgres:
+  db_name: heimdallr
+  db_user: heimdallr
+  db_pass: postgres
+  db_host: localhost
+  db_port: 5432
+  db_ssl_mode: "disable"
 
 broker:
   
