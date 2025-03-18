@@ -26,7 +26,6 @@ type RefreshToken struct {
 	UserID    int64
 	Token     string
 	ExpiresAt time.Time
-	CreatedAt time.Time
 }
 
 type ContextKey string
