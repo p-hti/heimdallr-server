@@ -1,7 +1,24 @@
 package storage
 
-import "github.com/jackc/pgx/v5/pgxpool"
+import (
+	"log/slog"
+
+	"github.com/p-hti/heimdallr-server/internal/config"
+	"github.com/p-hti/heimdallr-server/internal/storage/postgres"
+)
 
 type Storage struct {
-	Db *pgxpool.Pool
+	Postgres *postgres.Postgres
+	log      *slog.Logger
+}
+
+func NewStorage(cfg *config.Config, log *slog.Logger) (*Storage, error) {
+	postgresDb, err := postgres.NewPostgres(&cfg.Postgres, log)
+	if err != nil {
+		return nil, err
+	}
+	return &Storage{
+		Postgres: postgresDb,
+		log:      log,
+	}, nil
 }
